@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sue+Ellen+Francisco&display=swap"
+      rel="stylesheet"
+    />
+    <script src="main.js" defer></script>
+  </head>
+  <body>
+    <h1>My task board</h1>
+
+    <form>
+      <label for="taskBox">Task: <span id="taskErrorSpan"></span></label>
+      <input
+        type="text"
+        name="taskBox"
+        id="taskBox"
+        placeholder="Enter Taks name"
+      />
+
+      <label for="dateBox">Date: <span id="dateErrorSpan"></span></label>
+      <input type="date" name="dateBox" id="dateBox" onclick="minDay()" />
+
+      <label for="timeBox">Time: <span id="timeErrorSpan"></span></label>
+      <input type="time" name="timeBox" id="timeBox" />
+
+      <label for="textAreaBox"
+        >Description: <span id="textAreaErrorSpan"></span
+      ></label>
+      <textarea
+        name="textAreaBox"
+        id="textAreaBox"
+        cols="30"
+        rows="2"
+        placeholder="Enter description here"
+      ></textarea>
+
+      <div id="buttonDiv">
+        <button type="button" onclick="addTask()">Add Task</button>
+        <button type="button" onclick="clearForm()">Clear Form</button>
+      </div>
+    </form>
+
+    <div id="taskNotesDiv"></div>
+    <script
+      src="https://kit.fontawesome.com/7a8633ad48.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
