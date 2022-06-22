@@ -149,11 +149,6 @@ function deleteTask(index){
     loadTasks();
 }
 
-function completeTask(){
-    alert("Hooray! You've completed the task!");
-    alert("Do you agree to delete the task?");
-
-}
 function clearForm(){
     taskBox.focus();
     taskBox.value = "";
