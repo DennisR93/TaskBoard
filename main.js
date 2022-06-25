@@ -119,7 +119,7 @@ function displayAllTasks(allTasks){
         </div>
         `
         taskNotesDiv.innerHTML += note;
-    }           
+    }   
 }
 
 function currentTime(){

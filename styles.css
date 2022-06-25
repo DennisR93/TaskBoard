@@ -33,6 +33,11 @@ form{
     background-size: auto;
 }
 
+form > label{
+    font-weight: bold;
+    text-decoration: underline;
+}
+
 input,textarea{
     text-align: center;
     width: 60%;
@@ -77,6 +82,8 @@ span{
     background: none;
     color: var(--dark);
     transition: 0.5ms;
+    font-weight: bold;
+    text-decoration: underline;
 }
 
 #buttonDiv > button:hover{
@@ -122,16 +129,18 @@ ul>li:nth-child(2) {
     margin-top: 0;
     overflow-x: auto;
     width: 80%;
+    height: 20%;
 }
 
 ul>li:nth-child(3){
     word-wrap: break-word;
-    white-space: pre;
+    white-space: pre-wrap;
     overflow-y: auto;
     padding-left: 0;
     padding-right: 5px;
     width: 90%;
     margin-left: 0;
+    box-sizing: border-box;
 }
 
 ul>li:nth-child(n+4){
