@@ -37,6 +37,8 @@ function validateInfo(){
         return false;
     }
 
+    if(date < today && time < timeNow)
+
     if(time === ""){
         timeBox.style.backgroundColor = "pink";
         timeBox.focus();
@@ -138,14 +140,6 @@ function displayAllTasks(allTasks, newNote){
         tasksDiv.append(div);
                         }
     } 
-
-function currentTime(){
-const time = new Date().getTime();
-const date = Date();
-console.log(time);
-console.log(date);
-return time;
-}
 
 function setMinDay(){
 const today = new Date().toISOString().split('T')[0];
