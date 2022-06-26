@@ -59,16 +59,14 @@ function addTask(){
     if(!isValid){
         return;
     }
-
-    const tasks = getTask();
     
     const allTasks = getTaksFromStorage();
 
+    const tasks = getTask(allTasks.length + 1);
+
     allTasks.push(tasks);
 
-    console.log(allTasks);
-
-    displayAllTasks(allTasks);
+    displayAllTasks(allTasks, tasks.id);
 
     saveTasksToStorage(allTasks);
 
@@ -91,39 +89,61 @@ function saveTasksToStorage(allTasks) {
     localStorage.setItem("tasks", str);
 }
 
-function getTask(){
+function getTask(num){
     const task = taskBox.value;
     let date = dateBox.value;
     date = date.split("-").reverse().join("-");
     const time = timeBox.value;
     const textArea = textAreaBox.value;
     const tasks = {
-        task, date, time, textArea
+        task, date, time, textArea, id: num
     };
     return tasks;
 }
 
-function displayAllTasks(allTasks){
+function displayAllTasks(allTasks, newNote){
     taskNotesDiv.innerHTML = "";
     for(const task of allTasks){
         const index = allTasks.indexOf(task);
-        const note = `
-        <div class"noteDiv">
-        <ul class="fadeInNote">
-            <button type="button" onclick="deleteTask(${index})"><i class="fa-solid fa-trash deleteButton"></i></button>
-            <li>Task: ${task.task}</li>
-            <li>Description: ${task.textArea}</li>
-            <li>Date: ${task.date}</li>
-            <li>Time: ${task.time}</li>
-        </ul>
-        </div>
-        `
-        taskNotesDiv.innerHTML += note;
-    }   
-}
+        const div = document.createElement("div");
+        div.setAttribute("id", `${task.id}`);
+        div.classList.add("noteDiv");
+        const ul = document.createElement("ul");
+        (newNote === task.id) ? ul.classList.add("fadeInNote") : ul.classList.remove("fadeInNote");
+        const li1 = document.createElement("li");
+        const button = document.createElement("button");
+        button.innerHTML = `<i class="fa-solid fa-trash deleteButton"></i>`;
+        button.onclick = function deleteTask(){
+                            const allTasks = getTaksFromStorage();
+                            allTasks.splice(index, 1);
+                            saveTasksToStorage(allTasks);
+                            loadTasks();
+                            };
+        const li2 = document.createElement("li");
+        const taskLi = document.createTextNode(`Task: ${task.task}`);
+        const li3 = document.createElement("li");
+        const descLi = document.createTextNode(`Description ${task.textArea}`);
+        const li4 = document.createElement("li");
+        const dateLi = document.createTextNode(`Date: ${task.date}`);
+        const li5 = document.createElement("li");
+        const timeLi = document.createTextNode(`Time: ${task.time}`);
+        div.append(ul);
+        li1.append(button);
+        li2.append(taskLi);
+        li3.append(descLi);
+        li4.append(dateLi);
+        li5.append(timeLi);
+        ul.append(li1, li2, li3,li4,li5);
+        const tasksDiv = document.getElementById("taskNotesDiv");
+        tasksDiv.append(div);
+                        }
+    } 
 
 function currentTime(){
-const time = new Date().toISOString();
+const time = new Date().getTime();
+const date = Date();
+console.log(time);
+console.log(date);
 return time;
 }
 
@@ -140,13 +160,6 @@ function minDay(){
 function loadTasks(){
     const allTasks = getTaksFromStorage();
     displayAllTasks(allTasks);
-}
-
-function deleteTask(index){
-    const allTasks = getTaksFromStorage();
-    allTasks.splice(index, 1);
-    saveTasksToStorage(allTasks);
-    loadTasks();
 }
 
 function clearForm(){
