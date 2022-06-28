@@ -37,8 +37,6 @@ function validateInfo(){
         return false;
     }
 
-    if(date < today && time < timeNow)
-
     if(time === ""){
         timeBox.style.backgroundColor = "pink";
         timeBox.focus();
